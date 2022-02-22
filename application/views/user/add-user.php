@@ -96,7 +96,7 @@
       document.getElementById('text-message').innerHTML="Add success";
       }
     };
-    xmlhttp.open("post", `<?php echo base_url(); ?>index.php/UserController/saveUser?name=${name.value}&password=${password.value}&firstName=${firstName.value}&firstName=${lastName.value}`, true);
+    xmlhttp.open("post", `<?php echo base_url(); ?>index.php/UserController/saveUser?name=${name.value}&password=${password.value}&firstName=${firstName.value}&lastName=${lastName.value}`, true);
     xmlhttp.send();
     };
 
