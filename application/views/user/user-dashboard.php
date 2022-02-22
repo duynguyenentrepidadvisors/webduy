@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Web</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 </head>
 <body>
@@ -33,7 +33,13 @@ border-collapse: collapse;
   color: white;
   padding: 8px 60px;
   margin-bottom: 20px;
-  margin-left: 8px;
+  margin-left: 10px;
+  border-radius: 2px;
+}
+.add-user:hover{
+    padding: 8px 70px;
+    background-color:rgb(69,160,73,0.8);
+    cursor: pointer;    
 }
   .text-success{
       display: block;
@@ -41,7 +47,7 @@ border-collapse: collapse;
     }
 </style>
 <div class="user">
-<h1>User</h1>
+<h1>User (<?php echo count($list);?>)</h1>
    <span id="text-message" class="text-success"></span>
 <a class="add-user" href="<?php echo base_url(); ?>index.php/user/add">add</a>
 <table border="1">
@@ -49,6 +55,8 @@ border-collapse: collapse;
     <tr>
     <th>#</th>
     <th>User name</th>
+    <th>First name</th>
+    <th>Last name</th>
     <th>Action</th>
     </tr>
     </thead>
@@ -57,7 +65,9 @@ border-collapse: collapse;
         <tr>
             <td><?php echo $key ?></td>
             <td><?php echo $user->name ?></td>
-             <td><a href="<?php echo base_url(); ?>index.php/UserController/editUser/<?php echo $user->id ?>" class="edit">Edit</a>/ <a href="" class="delete" data-id="<?php echo $user->id?>">Delete </a></td>
+            <td><?php echo $user->firstName ?></td>
+            <td><?php echo $user->lastName ?></td>
+            <td><a href="<?php echo base_url(); ?>index.php/UserController/editUser/<?php echo $user->id ?>" class="edit">Edit</a>/ <a href="" class="delete" data-id="<?php echo $user->id?>">Delete </a></td>
         </tr>
       <?php }?>
     </tbody>

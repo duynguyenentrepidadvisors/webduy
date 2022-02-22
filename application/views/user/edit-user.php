@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>login</title>
+<title>web</title>
 </head>
 <body>
    <style type="text/css">
  .login{
         width:400px;
-        height:300px;
+        height:460px;
         border:1px solid grey;
         border-radius:10px;
         text-align: center;
@@ -51,10 +51,26 @@
       display: block;
       color: green;
     }
+      .text-danger {
+    display: block;
+    color: red;
+    } 
 </style>
   <div class="login">
-   <h2>Member login</h2>
+   <h2>Edit user</h2>
    <input type="text" id="name" name="name" value="<?php echo $user[0]["name"] ?>" placeholder="username" required>
+   <span id="aler-name" class="text-danger"></span>
+
+   <input type="password" id="password" value="<?php echo $user[0]["password"] ?>" name="password" placeholder="Password" required  />
+   <span id="aler-password" class="text-danger"></span>
+
+
+   <input type="text" id="firstName" value="<?php echo $user[0]["firstName"] ?>" name="firstName" placeholder="First Name" required  /> 
+   <span id="aler-firstname" class=" text-danger"></span>
+
+   <input type="text" id="lastName" value="<?php echo $user[0]["lastName"] ?>" name="lastName" placeholder="Last Name" required  /> 
+   <span id="aler-lastname" class=" text-danger"></span>
+
    <button id="addUser">Update user</button>
    <span id="text-message" class="text-success"></span>
 </div>
@@ -63,16 +79,51 @@
    let addUser = document.getElementById('addUser');
    let name = document.getElementById('name');
    let password = document.getElementById('password');
-    addUser.onclick = function(){
+   let firstName = document.getElementById('firstName');
+   let lastName = document.getElementById('lastName');
+
+    addUser.onclick = function(e){
+    e.preventDefault();
+    let alerMessage = document.getElementsByClassName("text-danger");
+    for (let i = 0; i < alerMessage.length; i++) {
+    alerMessage[i].innerHTML="";
+    }
+      if(!checkForm()) return;
+
        let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
       document.getElementById('text-message').innerHTML="Update success";
       }
     };
-    xmlhttp.open("post", `<?php echo base_url(); ?>index.php/UserController/updateUser?name=${name.value}&id=<?php echo $user[0]["id"] ?>`, true);
+    xmlhttp.open("post", `<?php echo base_url(); ?>index.php/UserController/updateUser?name=${name.value}&password=${password.value}&firstName=${firstName.value}&lastName=${lastName.value}&id=<?php echo $user[0]["id"] ?>`, true);
     xmlhttp.send();
     };
+      function checkForm(){
+      let checkForm=true;
+      let alerName = document.getElementById('aler-name');
+      let alerPassword = document.getElementById('aler-password');
+      let alerFirstName = document.getElementById('aler-firstname');
+      let alerLastname= document.getElementById('aler-lastname');
+      if(name.value.trim()=="")
+      {
+        checkForm=false;
+        alerName.innerHTML="User name invalid"
+      }
+      if(password.value.trim()=="")
+      {checkForm=false;
+        alerPassword.innerHTML="Password invalid"
+      }
+      if(firstName.value.trim()=="")
+      {checkForm=false;
+        alerFirstName.innerHTML="First Name invalid"
+      }
+      if(lastName.value.trim()=="")
+      {checkForm=false;
+        alerLastname.innerHTML="Last Name invalid"
+      }
+      return checkForm;
+    }
 </script>
  
 </body>

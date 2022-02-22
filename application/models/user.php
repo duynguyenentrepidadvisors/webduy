@@ -19,8 +19,10 @@ class user extends CI_Model
         $query = $this->db->get("user");
         return count($query->result());
     }
-    public function checkUserName($name)
+    public function checkUserName($name,$id)
     {
+        if($id!="")
+            $this->db->where("id !=",$id);
         $this->db->where('name',$name);
         $query = $this->db->get("user");
         return count($query->result());
@@ -28,7 +30,8 @@ class user extends CI_Model
      public function getListUser()
     {
         $this->db->select("*");
-        $query= $this->db->from("user");
+        $this->db->from("user");
+        $this->db->order_by('name', 'ASC');
         $query= $this->db->get();
         return $query->result();
     }

@@ -18,13 +18,12 @@ class UserController extends CI_Controller{
 	}
 	public function saveUser()
 	{
-		$name=$this->input->get('name');
-		$password=$this->input->get('password');
-		$checkUserName=$this->user->checkUserName($name);
+		$data=$this->getFormData($this->input);
+		$checkUserName=$this->user->checkUserName($data['name'],"");
 		if($checkUserName>0)
 			echo false;
 		else{
-		$this->user->saveUser(array("name" => $name,"password"=>$password));
+		$this->user->saveUser($data);
 		echo true;	
 		}
 	}
@@ -41,10 +40,24 @@ class UserController extends CI_Controller{
 	}
 	public function updateUser()
 	{
-		$name=$this->input->get('name');
-		$id=$this->input->get('id');
-		$this->user->updateUser($id,array("name" => $name));
+	    $data=$this->getFormData($this->input);
+		$data['id']=$this->input->get('id');
+		$checkUserName=$this->user->checkUserName($data['name'],$data['id']);
+		if($checkUserName>0)
+			echo false;
+		else{		
+		$this->user->updateUser($data['id'],$data);
 		echo true;
+     	}
+
+	}
+	public function getFormData($input)
+	{
+        $name=$input->get('name');
+		$password=$input->get('password');
+		$firstName=$input->get('firstName');
+		$lastName=$input->get('lastName');
+		return array("name" => $name,"password"=>$password,'firstName'=>$firstName,'lastName'=>$lastName);
 	}
 
 }

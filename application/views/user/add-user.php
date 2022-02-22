@@ -7,7 +7,7 @@
    <style type="text/css">
  .login{
         width:400px;
-        height:300px;
+        height:460px;
         border:1px solid grey;
         border-radius:10px;
         text-align: center;
@@ -59,11 +59,18 @@
 
 <form action="" method="post">
   <div class="login">
-   <h2>Member login</h2>
+   <h2>Create user</h2>
    <input type="text" id="name" name="name" placeholder="User Name" required  /> 
    <span id="aler-name" class=" text-danger"></span>
    <input type="password" id="password" name="password" placeholder="Password" required  />
    <span id="aler-password" class="text-danger"></span>
+
+   <input type="text" id="firstName" name="firstname" placeholder="First Name" required  /> 
+   <span id="aler-firstname" class=" text-danger"></span>
+
+   <input type="text" id="lastName" name="lastname" placeholder="Last Name" required  /> 
+   <span id="aler-lastname" class=" text-danger"></span>
+
    <span id="text-message" class="text-success"></span>
    <button id="addUser">Add user</button>
 </div>
@@ -72,22 +79,16 @@
    let addUser = document.getElementById('addUser');
    let name = document.getElementById('name');
    let password = document.getElementById('password');
-
-    addUser.onclick = function(e){
+   let firstName = document.getElementById('firstName');
+   let lastName = document.getElementById('lastName');
+   addUser.onclick = function(e){
+   let alerMessage = document.getElementsByClassName("text-danger");
+   for (let i = 0; i < alerMessage.length; i++) {
+    alerMessage[i].innerHTML="";
+    }
       e.preventDefault();
-      let checkForm=true;
-      let alerName = document.getElementById('aler-name');
-      let alerPassword = document.getElementById('aler-password');
-      if(name.value.trim()=="")
-      {
-        checkForm=false;
-        alerName.innerHTML="Name invalid"
-      }
-      if(password.value.trim()=="")
-      {checkForm=false;
-        alerPassword.innerHTML="Password invalid"
-      }
-      if(!checkForm) return;
+     
+      if(!checkForm()) return;
        let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(data) {
       if (this.readyState == 4 && this.status == 200) {
@@ -95,9 +96,35 @@
       document.getElementById('text-message').innerHTML="Add success";
       }
     };
-    xmlhttp.open("post", `<?php echo base_url(); ?>index.php/UserController/saveUser?name=${name.value}&password=${password.value}`, true);
+    xmlhttp.open("post", `<?php echo base_url(); ?>index.php/UserController/saveUser?name=${name.value}&password=${password.value}&firstName=${firstName.value}&firstName=${lastName.value}`, true);
     xmlhttp.send();
     };
+
+    function checkForm(){
+      let checkForm=true;
+      let alerName = document.getElementById('aler-name');
+      let alerPassword = document.getElementById('aler-password');
+      let alerFirstName = document.getElementById('aler-firstname');
+      let alerLastname= document.getElementById('aler-lastname');
+      if(name.value.trim()=="")
+      {
+        checkForm=false;
+        alerName.innerHTML="User name invalid"
+      }
+      if(password.value.trim()=="")
+      {checkForm=false;
+        alerPassword.innerHTML="Password invalid"
+      }
+      if(firstName.value.trim()=="")
+      {checkForm=false;
+        alerFirstName.innerHTML="First Name invalid"
+      }
+      if(lastName.value.trim()=="")
+      {checkForm=false;
+        alerLastname.innerHTML="Last Name invalid"
+      }
+      return checkForm;
+    }
 </script>
  
 </body>
