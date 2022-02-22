@@ -51,13 +51,19 @@
         display: block;
        color: green;
     }
+     .text-danger {
+    display: block;
+    color: red;
+    }  
 </style>
 
 <form action="" method="post">
   <div class="login">
    <h2>Member login</h2>
    <input type="text" id="name" name="name" placeholder="User Name" required  /> 
+   <span id="aler-name" class=" text-danger"></span>
    <input type="password" id="password" name="password" placeholder="Password" required  />
+   <span id="aler-password" class="text-danger"></span>
    <span id="text-message" class="text-success"></span>
    <button id="addUser">Add user</button>
 </div>
@@ -66,8 +72,22 @@
    let addUser = document.getElementById('addUser');
    let name = document.getElementById('name');
    let password = document.getElementById('password');
+
     addUser.onclick = function(e){
       e.preventDefault();
+      let checkForm=true;
+      let alerName = document.getElementById('aler-name');
+      let alerPassword = document.getElementById('aler-password');
+      if(name.value.trim()=="")
+      {
+        checkForm=false;
+        alerName.innerHTML="Name invalid"
+      }
+      if(password.value.trim()=="")
+      {checkForm=false;
+        alerPassword.innerHTML="Password invalid"
+      }
+      if(!checkForm) return;
        let xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function(data) {
       if (this.readyState == 4 && this.status == 200) {
