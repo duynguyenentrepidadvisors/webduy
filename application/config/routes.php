@@ -54,11 +54,12 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['login']= 'Auth/LoginController/index';
-$route['user/dashboard']= 'UserController/index';
-$route['user/delete-user']['post']= 'UserController/deleteUser';
-$route['user/add-user']['get']= 'UserController/addUser';
-$route['user/add-user']['post']= 'UserController/saveUser';
-$route['user/edit/update-user']['post']= 'UserController/updateUser';
-$route['user/edit/(:any)']['get']= 'UserController/editUser/$1';
+$route['login']['get']= 'Auth/LoginController/index';
+$route['login']['post']= 'Auth/LoginController/login';
+$route['dashboard']['get']= 'UserController/index';
+$route['delete-user']['post']= 'UserController/deleteUser';
+$route['add-user']['get']= 'UserController/addUser';
+$route['add-user']['post']= 'UserController/saveUser';
+$route['edit/update-user']['post']= 'UserController/updateUser';
+$route['edit/(:any)']['get']= 'UserController/editUser/$1';
 

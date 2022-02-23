@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>/public/css/auth/login.css">
 </head>
 <body>
-<form action="<?php echo base_url(); ?>index.php/Auth/LoginController/login" method="post">
+<form action="<?php echo base_url(); ?>login" method="post">
   <div class="login">
    <h2>Member login</h2>
    <input type="text" name="name"  value="<?php echo set_value('name')?>" placeholder="User Name" >

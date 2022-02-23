@@ -8,7 +8,7 @@
 <body>
 <div class="user">
 <h1>User (<span id="count-user"><?php echo count($list);?></span>)</h1>
-<a class="add-user" href="<?php echo base_url(); ?>index.php/user/add-user">Add</a>
+<a class="add-user" href="<?php echo base_url(); ?>add-user">Add</a>
 <table border="1">
    <thead> 
     <tr>
@@ -24,7 +24,7 @@
             <td><?php echo $user->name ?></td>
             <td><?php echo $user->firstName ?></td>
             <td><?php echo $user->lastName ?></td>
-            <td><a href="<?php echo base_url(); ?>index.php/user/edit/<?php echo $user->id ?>" class="edit"><i class="fas fa-pen"></i></a>
+            <td><a href="<?php echo base_url(); ?>edit/<?php echo $user->id ?>" class="edit"><i class="fas fa-pen"></i></a>
                 <a class="delete" data-id="<?php echo $user->id?>"><i class="fas fa-trash"></i> </a>
             </td>
         </tr>

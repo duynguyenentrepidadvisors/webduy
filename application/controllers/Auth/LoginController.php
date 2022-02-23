@@ -33,7 +33,7 @@ class LoginController extends CI_Controller {
         		'name'=>$name,
         	    'password'=>$password);
         	$this->session->set_userdata($data);
-        	redirect('user/dashboard','refresh');
+        	redirect('dashboard','refresh');
 	    }
 	    else
 	    {
