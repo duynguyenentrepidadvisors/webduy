@@ -21,10 +21,10 @@ class UserController extends CI_Controller{
 		$data=$this->getFormData($this->input);
 		$checkUserName=$this->user->checkUserName($data['name'],"");
 		if($checkUserName>0)
-			echo false;
+			echo "1";
 		else{
-		$this->user->saveUser($data);
-		echo true;	
+		    $this->user->saveUser($data);
+		    echo "2";
 		}
 	}
 	public function deleteUser()
@@ -41,23 +41,26 @@ class UserController extends CI_Controller{
 	public function updateUser()
 	{
 	    $data=$this->getFormData($this->input);
-		$data['id']=$this->input->get('id');
+		$data['id']=$this->input->post('id');
 		$checkUserName=$this->user->checkUserName($data['name'],$data['id']);
 		if($checkUserName>0)
-			echo false;
+			echo "1";
 		else{		
-		$this->user->updateUser($data['id'],$data);
-		echo true;
+		    $this->user->updateUser($data['id'],$data);
+		    echo "2";
      	}
 
 	}
 	public function getFormData($input)
 	{
-        $name=$input->get('name');
-		$password=$input->get('password');
-		$firstName=$input->get('firstName');
-		$lastName=$input->get('lastName');
-		return array("name" => $name,"password"=>$password,'firstName'=>$firstName,'lastName'=>$lastName);
+        $name=$input->post('name');
+		$password=$input->post('password');
+		$firstName=$input->post('firstName');
+		$lastName=$input->post('lastName');
+		if(trim($password)!="")
+		   return array("name" => $name,"password"=>md5($password),'firstName'=>$firstName,'lastName'=>$lastName);
+	    else
+		   return array("name" => $name,'firstName'=>$firstName,'lastName'=>$lastName);
 	}
 
 }

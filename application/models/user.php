@@ -15,7 +15,7 @@ class user extends CI_Model
     public function checkUser($name,$password)
     {
         $this->db->where('name',$name);
-        $this->db->where('password',$password);
+        $this->db->where('password',md5($password));
         $query = $this->db->get("user");
         return count($query->result());
     }

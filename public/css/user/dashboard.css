@@ -1,0 +1,56 @@
+body{
+    font-size: 16px;
+    font-family: Arial,Helvetica,sans-serif;
+}
+.user table{
+    width: calc(100% - 16px);
+    margin: 10px;
+}
+.user table,.user th,.user td{
+border: 1px solid #333;
+border-collapse: collapse;
+}
+.user th,.user td{
+    padding: 12px 0px;
+    text-align: center;
+}
+.user thead{
+    background-color: #45a049;
+    color: white;
+}
+.add-user{
+  border: 1px solid grey;
+  background-color: #45a049;
+  text-decoration: none;
+  color: white;
+  padding: 8px 60px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  border-radius: 2px;
+}
+.add-user:hover{
+    padding: 8px 70px;
+    background-color:rgb(69,160,73,0.8);
+    cursor: pointer;    
+}
+.text-success{
+    display: block;
+    color: green;
+ 
+}
+.user a{
+    text-decoration: none;
+    color: #333;
+}
+.delete{
+cursor: pointer;
+}
+.text-message{
+
+}
+.fa-pen{
+    color: green;
+}
+.fa-trash{
+    color: red;
+}

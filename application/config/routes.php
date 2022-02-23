@@ -56,6 +56,9 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login']= 'Auth/LoginController/index';
 $route['user/dashboard']= 'UserController/index';
-$route['user/add']= 'UserController/addUser';
-$route['user/edit/(:any)']= 'UserController/editUser/$1';
+$route['user/delete-user']['post']= 'UserController/deleteUser';
+$route['user/add-user']['get']= 'UserController/addUser';
+$route['user/add-user']['post']= 'UserController/saveUser';
+$route['user/edit/update-user']['post']= 'UserController/updateUser';
+$route['user/edit/(:any)']['get']= 'UserController/editUser/$1';
 

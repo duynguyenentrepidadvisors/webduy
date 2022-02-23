@@ -12,9 +12,7 @@ class LoginController extends CI_Controller {
 	}
 	public function index()
 	{
-			if($this->session->has_userdata('name'))
-	        	redirect('user/dashboard','refresh');
-		$this->load->view('auth/login');
+		$this->load->view('auth/login',"refresh");
 	}
 	public function login()
 	{
@@ -46,4 +44,4 @@ class LoginController extends CI_Controller {
 	    }else
         	$this->index();
 	}
-	}
+}

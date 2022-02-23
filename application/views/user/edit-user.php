@@ -2,66 +2,17 @@
 <html>
 <head>
 <title>web</title>
+<link rel="stylesheet" href="<?php echo base_url(); ?>/public/css/user/edit.css">
 </head>
 <body>
-   <style type="text/css">
- .login{
-        width:400px;
-        height:460px;
-        border:1px solid grey;
-        border-radius:10px;
-        text-align: center;
-        margin: auto;
-        margin-top: 100px;
-    }
-    h2{
-        color:#868787;
-        font-size: 18px;
-        font-family: sans-serif;
-        font-size: 24px;
-    } 
-    input{
-        width: 300px;
-        height: 40px;
-        margin-bottom: 10px;
-        border-radius: 5px ;
-        border:1px solid grey;
-        padding-left: 20px;
-        margin: 10px 0;
-        color: black;
-        font-size: 15px;
-    }
-    button{
-        width: 320px;
-        height: 40px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-        border: none;
-        background-color: #45a049;
-        color: white;
-        margin: 10px 0;
-
-    }
-    button:hover{
-        font-size: 15px;
-        background-color:rgb(69,160,73,0.8);
-        cursor: pointer;
-    }
-    .text-success{
-      display: block;
-      color: green;
-    }
-      .text-danger {
-    display: block;
-    color: red;
-    } 
-</style>
   <div class="login">
    <h2>Edit user</h2>
+   <form>
+   <input type="hidden" id="id" value="<?php echo $user[0]["id"] ?>">
    <input type="text" id="name" name="name" value="<?php echo $user[0]["name"] ?>" placeholder="username" required>
    <span id="aler-name" class="text-danger"></span>
 
-   <input type="password" id="password" value="<?php echo $user[0]["password"] ?>" name="password" placeholder="Password" required  />
+   <input type="password" id="password" value="" name="password" placeholder="Password" required  />
    <span id="aler-password" class="text-danger"></span>
 
 
@@ -73,58 +24,8 @@
 
    <button id="addUser">Update user</button>
    <span id="text-message" class="text-success"></span>
+</form>
 </div>
-  </div>
-<script type="text/javascript">
-   let addUser = document.getElementById('addUser');
-   let name = document.getElementById('name');
-   let password = document.getElementById('password');
-   let firstName = document.getElementById('firstName');
-   let lastName = document.getElementById('lastName');
-
-    addUser.onclick = function(e){
-    e.preventDefault();
-    let alerMessage = document.getElementsByClassName("text-danger");
-    for (let i = 0; i < alerMessage.length; i++) {
-    alerMessage[i].innerHTML="";
-    }
-      if(!checkForm()) return;
-
-       let xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-      document.getElementById('text-message').innerHTML="Update success";
-      }
-    };
-    xmlhttp.open("post", `<?php echo base_url(); ?>index.php/UserController/updateUser?name=${name.value}&password=${password.value}&firstName=${firstName.value}&lastName=${lastName.value}&id=<?php echo $user[0]["id"] ?>`, true);
-    xmlhttp.send();
-    };
-      function checkForm(){
-      let checkForm=true;
-      let alerName = document.getElementById('aler-name');
-      let alerPassword = document.getElementById('aler-password');
-      let alerFirstName = document.getElementById('aler-firstname');
-      let alerLastname= document.getElementById('aler-lastname');
-      if(name.value.trim()=="")
-      {
-        checkForm=false;
-        alerName.innerHTML="User name invalid"
-      }
-      if(password.value.trim()=="")
-      {checkForm=false;
-        alerPassword.innerHTML="Password invalid"
-      }
-      if(firstName.value.trim()=="")
-      {checkForm=false;
-        alerFirstName.innerHTML="First Name invalid"
-      }
-      if(lastName.value.trim()=="")
-      {checkForm=false;
-        alerLastname.innerHTML="Last Name invalid"
-      }
-      return checkForm;
-    }
-</script>
- 
+<script language="javascript" src="<?php echo base_url(); ?>/public/js/user/add.js"></script> 
 </body>
 </html>
