@@ -8,7 +8,7 @@
 <body>
 <div class="user">
 <h1>User (<span id="count-user"><?php echo count($list);?></span>)</h1>
-<a class="add-user" href="<?php echo base_url(); ?>index.php/user/add-user">add</a>
+<a class="add-user" href="<?php echo base_url(); ?>index.php/user/add-user">Add</a>
 <table border="1">
    <thead> 
     <tr>

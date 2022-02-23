@@ -38,10 +38,6 @@ border-collapse: collapse;
     color: green;
  
 }
-.user a{
-    text-decoration: none;
-    color: #333;
-}
 .delete{
 cursor: pointer;
 }
