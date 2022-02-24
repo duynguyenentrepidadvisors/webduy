@@ -12,6 +12,8 @@ class LoginController extends CI_Controller {
 	}
 	public function index()
 	{
+        if($this->session->has_userdata("name"))
+        	redirect('dashboard','refresh');
 		$this->load->view('auth/login',"refresh");
 	}
 	public function login()

@@ -6,9 +6,12 @@ class UserController extends CI_Controller{
         $this->load->model('user');
         $this->load->library('form_validation');
         $this->load->library('encryption');
+        $this->load->library('session');
 	}
 	public function index()
 	{
+		if(!$this->session->has_userdata("name"))
+        	redirect('login','refresh');
 		$list=$this->user->getListUser();
 		$this->load->view('user/user-dashboard',array('list'=>$list));	
 	}
