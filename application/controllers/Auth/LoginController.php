@@ -13,7 +13,9 @@ class LoginController extends CI_Controller {
 	public function index()
 	{
         if($this->session->has_userdata("name"))
+        {
         	redirect('dashboard','refresh');
+        }
 		$this->load->view('auth/login',"refresh");
 	}
 	public function login()
@@ -22,7 +24,6 @@ class LoginController extends CI_Controller {
 	    $this->form_validation->set_rules('name','Name','required');
 	    $this->form_validation->set_rules('password','Password','required');
 	    if($this->form_validation->run()){
-
         $login=$this->input->post('login');
 		if(isset($login))
 		{
@@ -41,9 +42,9 @@ class LoginController extends CI_Controller {
 	    {
 	    	$this->session->set_flashdata('message', 'User or password invalid.');
         	$this->index();
-	    }
-		}
-	    }else
+	    }}
+	    }else{
         	$this->index();
+	    }
 	}
 }

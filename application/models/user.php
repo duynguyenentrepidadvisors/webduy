@@ -21,8 +21,9 @@ class user extends CI_Model
     }
     public function checkUserName($name,$id)
     {
-        if($id!="")
+        if($id!=""){
             $this->db->where("id !=",$id);
+        }
         $this->db->where('name',$name);
         $query = $this->db->get("user");
         return count($query->result());
@@ -53,7 +54,7 @@ class user extends CI_Model
     }
      public function getUser($id)
     {
-        return $this->db->get_where('user',array('id'=>$id))->result_array();;
+        return $this->db->get_where('user',array('id'=>$id))->result_array()[0];;
     }
 }
 ?>

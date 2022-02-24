@@ -5,7 +5,7 @@ function deleteUser(){
     let userDelete = document.getElementsByClassName("delete");
     for (let i = 0; i < userDelete.length; i++){    
         let userDl=userDelete[i];
-    userDl.onclick =  function() {clickButtonDelete(userDl);}
+    userDl.onclick =  function(userDl) {clickButtonDelete(userDl);}
    } 
 }
 function clickButtonDelete(userDl){
@@ -15,7 +15,7 @@ function clickButtonDelete(userDl){
     xhttp.open("post", "delete-user", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send(`id=${userDl.getAttribute("data-id")}`);
-    xhttp.onreadystatechange = function() {loadAjax(this,userDl);};}
+    xhttp.onreadystatechange = function(userDl) {loadAjax(this,userDl);};}
 }
 function loadAjax(thisAjax,userDl){
      if (thisAjax.readyState == 4 && thisAjax.status == 200) {

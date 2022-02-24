@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>web</title>
-<link rel="stylesheet" href="<?php echo base_url(); ?>/public/css/user/add.css">
+<link rel="stylesheet" href="public/css/user/add.css">
 </head>
 <body>
 <form action="" method="post">
@@ -24,5 +24,5 @@
 </div>
 </form>
 </body>
-<script language="javascript" src="<?php echo base_url(); ?>/public/js/user/add.js"></script>
+<script language="javascript" src="public/js/user/add.js"></script>
 </html>

@@ -10,8 +10,9 @@ class UserController extends CI_Controller{
 	}
 	public function index()
 	{
-		if(!$this->session->has_userdata("name"))
-        	redirect('login','refresh');
+		if(!$this->session->has_userdata("name"))	{
+			redirect('login','refresh');
+        }
 		$list=$this->user->getListUser();
 		$this->load->view('user/user-dashboard',array('list'=>$list));	
 	}
@@ -23,8 +24,9 @@ class UserController extends CI_Controller{
 	{
 		$data=$this->getFormData($this->input);
 		$checkUserName=$this->user->checkUserName($data['name'],"");
-		if($checkUserName>0)
+		if($checkUserName>0){
 			echo "1";
+		}
 		else{
 		    $this->user->saveUser($data);
 		    echo "2";
@@ -46,8 +48,9 @@ class UserController extends CI_Controller{
 	    $data=$this->getFormData($this->input);
 		$data['id']=$this->input->post('id');
 		$checkUserName=$this->user->checkUserName($data['name'],$data['id']);
-		if($checkUserName>0)
-			echo "1";
+		if($checkUserName>0){
+				echo "1";
+		}
 		else{		
 		    $this->user->updateUser($data['id'],$data);
 		    echo "2";
@@ -60,10 +63,13 @@ class UserController extends CI_Controller{
 		$password=$input->post('password');
 		$firstName=$input->post('firstName');
 		$lastName=$input->post('lastName');
-		if(trim($password)!="")
-		   return array("name" => $name,"password"=>md5($password),'firstName'=>$firstName,'lastName'=>$lastName);
-	    else
-		   return array("name" => $name,'firstName'=>$firstName,'lastName'=>$lastName);
+		if(trim($password)!=""){
+		   $data = array("name" => $name,"password"=>md5($password),'firstName'=>$firstName,'lastName'=>$lastName);
+		}
+	    else{
+		    $data = array("name" => $name,'firstName'=>$firstName,'lastName'=>$lastName);
+	    }
+	    return $data;
 	}
 
 }

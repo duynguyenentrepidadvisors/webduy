@@ -9,7 +9,7 @@ function addUser(){
    userData['firstName'] = document.getElementById('firstName');
    userData['lastName'] = document.getElementById('lastName');
    addUser = document.getElementById('addUser');
-   addUser.onclick = function (e){
+   addUser.onclick = function (e,userData){
       e.preventDefault()
       clickButton(userData);
 }}
@@ -17,7 +17,7 @@ function clickButton(userData){
    let alerMessage = document.getElementsByClassName("text-danger");
    for (let i = 0; i < alerMessage.length; i++) {
     alerMessage[i].innerHTML="";}
-      if(checkFormData(userData)) return;
+      if(checkFormData(userData)){
       let xmlhttp = new XMLHttpRequest();
       if(userData['id']!=null){
         xmlhttp.open("post", `update-user`, true);
@@ -29,8 +29,9 @@ function clickButton(userData){
         xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlhttp.send(`name=${userData['name'].value}&password=${userData['password'].value}&firstName=${userData['firstName'].value}&lastName=${userData['lastName'].value}`);
       }
-      xmlhttp.onreadystatechange =function (){
+      xmlhttp.onreadystatechange =function (xmlhttp){
       loadAjax(this,xmlhttp);}
+    }
   }
 function checkFormData(userData){
       let checkForm=true;
@@ -54,7 +55,7 @@ function checkFormData(userData){
         checkForm=false;
         alerLastname.innerHTML="Last Name invalid";
       }
-      if(!checkForm) return true;
+      return checkForm;
 }
 function loadAjax(thisAjax,xmlhttp){
       if (thisAjax.readyState == 4 && thisAjax.status == 200) {
