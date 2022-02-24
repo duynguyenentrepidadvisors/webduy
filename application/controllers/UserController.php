@@ -49,7 +49,7 @@ class UserController extends CI_Controller{
 		$data['id']=$this->input->post('id');
 		$checkUserName=$this->user->checkUserName($data['name'],$data['id']);
 		if($checkUserName>0){
-				echo "1";
+			echo "1";
 		}
 		else{		
 		    $this->user->updateUser($data['id'],$data);
@@ -64,7 +64,7 @@ class UserController extends CI_Controller{
 		$firstName=$input->post('firstName');
 		$lastName=$input->post('lastName');
 		if(trim($password)!=""){
-		   $data = array("name" => $name,"password"=>md5($password),'firstName'=>$firstName,'lastName'=>$lastName);
+		    $data = array("name" => $name,"password"=>md5($password),'firstName'=>$firstName,'lastName'=>$lastName);
 		}
 	    else{
 		    $data = array("name" => $name,'firstName'=>$firstName,'lastName'=>$lastName);
